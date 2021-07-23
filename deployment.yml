@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teste-kubenetes
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: server-kubernetes
+  template:
+    metadata:
+      labels:
+        app: server-kubernetes
+    spec:
+      containers:
+        - name: container-server-kubernetes
+          image: mfortunat0/kubernetes:v2
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
